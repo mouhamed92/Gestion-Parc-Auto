@@ -1,9 +1,9 @@
-package tn.sncft.entretienservice.model;
+package tn.sncft.entretienservice.dtos;
 
 import lombok.Data;
 
 @Data
-public class Vehicule {
+public class VehiculeResponseDto {
 
     Long id;
     String marque;
@@ -11,4 +11,5 @@ public class Vehicule {
     int annee;
     String typeCarburant;
     String matricule ;
+
 }

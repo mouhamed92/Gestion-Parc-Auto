@@ -6,9 +6,8 @@ import java.time.LocalDate;
 
 @Data
 public class EntretienRequestDto {
-    Long id;
-    Long idVehicle;
-    LocalDate dateMaintenance;
-    double montantMaintenance;
-    String detailsMaintenance ;
+   private Long idVehicle;
+   private LocalDate dateMaintenance;
+   private double montantMaintenance;
+   private String detailsMaintenance ;
 }

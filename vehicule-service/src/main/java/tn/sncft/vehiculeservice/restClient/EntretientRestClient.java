@@ -6,7 +6,7 @@ import tn.sncft.vehiculeservice.model.Entretien;
 
 import java.util.List;
 
-@FeignClient("ENTRETIEN-SERVICE")
+@FeignClient(name = "ENTRETIEN-SERVICE")
 public interface EntretientRestClient {
 
     @GetMapping("/entretiens")

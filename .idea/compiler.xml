@@ -7,14 +7,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="entretien-service" />
         <module name="vehicule-service" />
+        <module name="discovry" />
+        <module name="entretien-service" />
+        <module name="gateway" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="discovry" options="-parameters" />
       <module name="entretien-service" options="-parameters" />
+      <module name="gateway" options="-parameters" />
       <module name="vehicule-service" options="-parameters" />
     </option>
   </component>

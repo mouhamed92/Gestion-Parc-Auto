@@ -3,6 +3,8 @@ package tn.sncft.vehiculeservice.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.sncft.vehiculeservice.dtos.*;
+import tn.sncft.vehiculeservice.entities.Vehicule;
+import tn.sncft.vehiculeservice.repositories.VehiculeRepository;
 import tn.sncft.vehiculeservice.services.VehiculeService;
 
 import java.util.List;
@@ -12,6 +14,9 @@ public class VehiculeController {
 
     @Autowired
     VehiculeService vehiculeService ;
+
+    @Autowired
+    VehiculeRepository vehiculeRepository ;
 
     @PostMapping(path = "/addVehicule")
     public VehiculeResponseDto saveVehicule(@RequestBody VehiculeRequestDto vehiculeRequestDto){
@@ -46,5 +51,10 @@ public class VehiculeController {
     @GetMapping(path = "/listMissions")
     public List<MissionResponseDto> findMissions(VehiculeIdRequestDto vehiculeIdRequestDto){
         return vehiculeService.findHistoriqueMission(vehiculeIdRequestDto);
+    }
+
+    @GetMapping(path = "/findVehicule/{id}")
+    Vehicule findVehiculeById(@PathVariable Long id){
+        return vehiculeRepository.findById(id).get();
     }
 }
