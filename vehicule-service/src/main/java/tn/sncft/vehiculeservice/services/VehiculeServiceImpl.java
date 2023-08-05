@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import tn.sncft.vehiculeservice.dtos.*;
 import tn.sncft.vehiculeservice.entities.Vehicule;
 import tn.sncft.vehiculeservice.model.Entretien;
@@ -14,6 +15,7 @@ import tn.sncft.vehiculeservice.restClient.MissionRestClient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @Transactional
@@ -63,7 +65,7 @@ public class VehiculeServiceImpl implements VehiculeService {
         vehicule.setModele(vehiculeRequestDto.getModele());
         vehicule.setAnnee(vehiculeRequestDto.getAnnee());
         vehicule.setTypeCarburant(vehiculeRequestDto.getTypeCarburant());
-        vehicule.setMatricule(vehicule.getMatricule());
+        vehicule.setMatricule(vehiculeRequestDto.getMatricule());
 
         vehiculeRepository.save(vehicule);
 
@@ -124,24 +126,21 @@ public class VehiculeServiceImpl implements VehiculeService {
     @Override
     public List<EntretientResponseDto> findHistoriqueEntretiens(VehiculeIdRequestDto vehiculeIdRequestDto) {
 
-        List<Entretien> entretiens = new ArrayList<>();
+        List<EntretientResponseDto> entretientResponseDto = new ArrayList<>();
 
-        entretientRestClient.findAllEntretien().forEach(entretien -> {
-            if (entretien.getIdVehicle() == vehiculeIdRequestDto.getId()){
-                entretiens.add(entretien) ;
-            }
-        });
+        List<EntretientResponseDto> entretiens =  entretientRestClient.findAllEntretien();
+        System.out.println(entretiens);
 
-        if(entretiens.equals(null)) {
+        if (entretiens.isEmpty()) {
             System.out.println("pas des entretiens à afficher");
-            return null ;
-        }else {
-            List<EntretientResponseDto> entretientResponseDto = new ArrayList<>() ;
+        } else {
             entretiens.forEach(entretien -> {
-                entretientResponseDto.add(modelMapper.map(entretien,EntretientResponseDto.class));
+                if(entretien.getIdVehicle()==vehiculeIdRequestDto.getId()){
+                entretientResponseDto.add(modelMapper.map(entretien, EntretientResponseDto.class));
+                }
             });
-            return entretientResponseDto ;
         }
+        return entretientResponseDto;
     }
 
     @Override
@@ -165,5 +164,8 @@ public class VehiculeServiceImpl implements VehiculeService {
             return missionResponseDto ;
         }
     }
-
+    @Override
+    public Vehicule findVehiculeById(Long id) {
+        return vehiculeRepository.findById(id).get();
+    }
 }

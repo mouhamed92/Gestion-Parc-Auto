@@ -1,6 +1,7 @@
 package tn.sncft.vehiculeservice.services;
 
 import tn.sncft.vehiculeservice.dtos.*;
+import tn.sncft.vehiculeservice.entities.Vehicule;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ public interface VehiculeService {
     public List<VehiculeResponseDto> findAllVehicule();
     public List<EntretientResponseDto> findHistoriqueEntretiens(VehiculeIdRequestDto vehiculeIdRequestDto);
     public List<MissionResponseDto> findHistoriqueMission(VehiculeIdRequestDto vehiculeIdRequestDto);
+    public Vehicule findVehiculeById(Long id);
 
    //Générer des rapports liés aux véhicules
 

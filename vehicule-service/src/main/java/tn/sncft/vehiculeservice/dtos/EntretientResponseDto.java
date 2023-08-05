@@ -9,8 +9,8 @@ public class EntretientResponseDto {
 
     private Long id;
     private Long idVehicle;
-    private LocalDate maintenanceDate;
-    private double maintenanceCost;
-    private String replacedParts;
+    LocalDate dateMaintenance;
+    double montantMaintenance;
+    String detailsMaintenance ;
 
 }

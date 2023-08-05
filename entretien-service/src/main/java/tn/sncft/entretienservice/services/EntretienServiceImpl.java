@@ -10,6 +10,7 @@ import tn.sncft.entretienservice.model.Vehicule;
 import tn.sncft.entretienservice.repositories.EntretienRepository;
 import tn.sncft.entretienservice.restClients.VehiculeRestClient;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,17 +27,6 @@ public class EntretienServiceImpl implements EntretienService {
     @Override
     public EntretienResponseDto aadEntretien(EntretienRequestDto entretienRequestDto) {
         
-/*        Entretien entretien = new Entretien().builder()
-                .idVehicle(entretienRequestDto.getIdVehicle())
-                .dateMaintenance(entretienRequestDto.getDateMaintenance())
-                .detailsMaintenance(entretienRequestDto.getDetailsMaintenance())
-                .montantMaintenance(entretienRequestDto.getMontantMaintenance())
-                .build();
-
-        entretienRepository.save(entretien);
-        System.out.println(entretien);
-        System.out.println("Entretien ajouté avec succé...");*/
-
         EntretienResponseDto entretienResponseDto = new EntretienResponseDto();
         Long idVehicule = entretienRequestDto.getIdVehicle();
 
@@ -66,21 +56,112 @@ public class EntretienServiceImpl implements EntretienService {
         }
     @Override
     public EntretienResponseDto updateEntretien(EntretienRequestDto entretienRequestDto) throws Exception {
-        return null;
+
+        Entretien entretien ;
+        EntretienResponseDto entretienResponseDto ;
+
+        entretien = entretienRepository.findById(entretienRequestDto.getId()).get();
+
+        if(entretien.equals(null)) throw new Exception("entretien introuvable !");
+
+        entretien.setIdVehicle(entretienRequestDto.getIdVehicle());
+        entretien.setDateMaintenance(entretienRequestDto.getDateMaintenance());
+        entretien.setMontantMaintenance(entretien.getMontantMaintenance());
+        entretien.setDetailsMaintenance(entretienRequestDto.getDetailsMaintenance());
+
+        entretienRepository.save(entretien);
+
+        entretienResponseDto = modelMapper.map(entretien,EntretienResponseDto.class);
+
+        return entretienResponseDto;
     }
 
     @Override
     public void deleteEntretien(EntretienIdRequestDto entretienIdRequestDto) {
 
+        Entretien entretien ;
+        entretien = entretienRepository.findById(entretienIdRequestDto.getId()).get();
+        try {
+            entretienRepository.delete(entretien);
+            System.out.println("Supression éffectuer avec succé...");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     @Override
     public EntretienResponseDto findEntretien(EntretienIdRequestDto entretienIdRequestDto) {
-        return null;
+
+        Entretien entretien ;
+        EntretienResponseDto entretienResponseDto ;
+
+        entretien = entretienRepository.findById(entretienIdRequestDto.getId()).get();
+
+        if (entretien==null){
+            System.out.println("entretien introuvable..!");
+        }
+
+        entretienResponseDto = modelMapper.map(entretien,EntretienResponseDto.class);
+
+        return entretienResponseDto ;
     }
 
     @Override
     public List<EntretienResponseDto> findAllEntretien() {
-        return null;
+
+        List<EntretienResponseDto> entretienResponseDto = new ArrayList<>();
+        List<Entretien> entretiens = new ArrayList<>() ;
+
+        entretienRepository.findAll().forEach(e->
+        {
+            entretiens.add(e);
+            System.out.println(e);
+        });
+
+        entretiens.forEach(entretien -> {
+            entretienResponseDto.add(modelMapper.map(entretien, EntretienResponseDto.class));
+        });
+        return entretienResponseDto;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*        try {
+            if (vehiculeRestClient.findVehicule(entretienRequestDto.getIdVehicle()) == null) {
+                System.out.println("vérifier identifiant véhicule..!");
+            } else {
+                entretien = new Entretien().builder()
+                        .idVehicle(entretienRequestDto.getIdVehicle())
+                        .dateMaintenance(entretienRequestDto.getDateMaintenance())
+                        .detailsMaintenance(entretienRequestDto.getDetailsMaintenance())
+                        .montantMaintenance(entretienRequestDto.getMontantMaintenance())
+                        .build();
+
+                entretienRepository.save(entretien);
+                System.out.println(entretien);
+                System.out.println("Entretien ajouté avec succé...");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/

@@ -43,18 +43,18 @@ public class VehiculeController {
         return vehiculeService.findAllVehicule();
     }
 
-    @GetMapping(path = "/listEntretiens")
-    public List<EntretientResponseDto> findEntretiens(VehiculeIdRequestDto vehiculeIdRequestDto){
+    @GetMapping(path = "/listeEntretiens")
+    public List<EntretientResponseDto> findEntretiens(@RequestBody VehiculeIdRequestDto vehiculeIdRequestDto){
         return vehiculeService.findHistoriqueEntretiens(vehiculeIdRequestDto);
     }
 
     @GetMapping(path = "/listMissions")
-    public List<MissionResponseDto> findMissions(VehiculeIdRequestDto vehiculeIdRequestDto){
+    public List<MissionResponseDto> findMissions(@RequestBody VehiculeIdRequestDto vehiculeIdRequestDto){
         return vehiculeService.findHistoriqueMission(vehiculeIdRequestDto);
     }
 
     @GetMapping(path = "/findVehicule/{id}")
     Vehicule findVehiculeById(@PathVariable Long id){
-        return vehiculeRepository.findById(id).get();
+        return vehiculeService.findVehiculeById(id);
     }
 }
