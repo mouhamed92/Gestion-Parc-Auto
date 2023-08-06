@@ -20,7 +20,10 @@ import java.util.Objects;
 @Service
 @Transactional
 public class VehiculeServiceImpl implements VehiculeService {
-
+    /**
+     * Service vehicule contient tout les operation
+     * ajout-suppression-modification-consultation liste des entretiens lié a une véhicule...
+     */
     @Autowired
     VehiculeRepository vehiculeRepository ;
     @Autowired
