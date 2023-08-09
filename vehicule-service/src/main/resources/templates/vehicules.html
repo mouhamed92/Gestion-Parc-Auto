@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-2">
+    <div class="card">
+        <div class="card-header">Liste des véhicules</div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th><th>Marque</th><th>Modele</th><th>Année</th><th>Carburant</th><th>Matricule</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="v:${listVehicules}">
+                    <td th:text=${v.id}></td>
+                    <td th:text=${v.marque}></td>
+                    <td th:text=${v.modele}></td>
+                    <td th:text=${v.annee}></td>
+                    <td th:text=${v.typeCarburant}></td>
+                    <td th:text=${v.matricule}></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
