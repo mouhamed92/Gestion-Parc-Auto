@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import tn.sncft.vehiculeservice.dtos.VehiculeResponseDto;
 import tn.sncft.vehiculeservice.services.VehiculeService;
 
@@ -16,9 +17,12 @@ public class V2Controller {
     VehiculeService vehiculeService ;
 
     @GetMapping(path = "/index")
-    public String vehicules(Model model){
-       List<VehiculeResponseDto> vehicules = vehiculeService.findAllVehicule();
+    public String vehicules(Model model,
+                            @RequestParam(name="keyWord",defaultValue = "")String keyWord){
+
+       List<VehiculeResponseDto> vehicules = vehiculeService.findByContainName(keyWord);
        model.addAttribute("listVehicules",vehicules);
+       model.addAttribute("keyWord",keyWord);
        return "vehicules";
     }
 }

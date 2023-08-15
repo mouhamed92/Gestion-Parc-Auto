@@ -171,4 +171,14 @@ public class VehiculeServiceImpl implements VehiculeService {
     public Vehicule findVehiculeById(Long id) {
         return vehiculeRepository.findById(id).get();
     }
+
+    public List<VehiculeResponseDto> findByContainName(String keyWord){
+        List<Vehicule> vehicules = vehiculeRepository.findByMarqueContains(keyWord);
+        List<VehiculeResponseDto> vehiculeResponseDtos = new ArrayList<>();
+        vehicules.forEach(v->{
+            vehiculeResponseDtos.add(modelMapper.map(v,VehiculeResponseDto.class));
+        });
+
+        return  vehiculeResponseDtos ;
+    }
 }
