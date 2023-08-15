@@ -167,8 +167,15 @@ public class VehiculeServiceImpl implements VehiculeService {
             return missionResponseDto ;
         }
     }
+
+    /**
+     * methode pour le prototype avec thymeleaf utilisé dans le controller V2
+     * @param id
+     * @return
+     */
     @Override
     public Vehicule findVehiculeById(Long id) {
+
         return vehiculeRepository.findById(id).get();
     }
 

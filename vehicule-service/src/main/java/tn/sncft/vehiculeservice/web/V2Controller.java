@@ -16,6 +16,16 @@ public class V2Controller {
     @Autowired
     VehiculeService vehiculeService ;
 
+    @GetMapping(path = "/")
+    public String home(){
+        return "redirect:/index";
+    }
+
+    @GetMapping(path = "/addVehicule")
+    public String formVehicule(){
+        return "addVehicule";
+    }
+
     @GetMapping(path = "/index")
     public String vehicules(Model model,
                             @RequestParam(name="keyWord",defaultValue = "")String keyWord){
