@@ -168,14 +168,13 @@ public class VehiculeServiceImpl implements VehiculeService {
         }
     }
 
+
+
     /**
      * methode pour le prototype avec thymeleaf utilisé dans le controller V2
-     * @param id
-     * @return
      */
     @Override
     public Vehicule findVehiculeById(Long id) {
-
         return vehiculeRepository.findById(id).get();
     }
 
@@ -188,4 +187,11 @@ public class VehiculeServiceImpl implements VehiculeService {
 
         return  vehiculeResponseDtos ;
     }
+
+    public VehiculeResponseDto saveVehicule(Vehicule vehicule){
+        vehiculeRepository.save(vehicule);
+        VehiculeResponseDto responseDto = modelMapper.map(vehicule,VehiculeResponseDto.class);
+        return responseDto ;
+    }
+
 }

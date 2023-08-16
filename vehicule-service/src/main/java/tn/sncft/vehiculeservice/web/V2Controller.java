@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import tn.sncft.vehiculeservice.dtos.VehiculeResponseDto;
+import tn.sncft.vehiculeservice.entities.Vehicule;
 import tn.sncft.vehiculeservice.services.VehiculeService;
 
 import java.util.List;
@@ -22,7 +24,14 @@ public class V2Controller {
     }
 
     @GetMapping(path = "/addVehicule")
-    public String formVehicule(){
+    public String formVehicule(Model model){
+        model.addAttribute("vehicule",new VehiculeResponseDto());
+        return "addVehicule";
+    }
+
+    @PostMapping(path = "/saveVehicule")
+    public String saveVehicule(Model model, Vehicule vehicule){
+        vehiculeService.saveVehicule(vehicule);
         return "addVehicule";
     }
 
@@ -35,4 +44,6 @@ public class V2Controller {
        model.addAttribute("keyWord",keyWord);
        return "vehicules";
     }
+
+
 }

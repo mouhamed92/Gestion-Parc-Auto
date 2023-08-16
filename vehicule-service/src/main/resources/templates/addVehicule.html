@@ -8,36 +8,44 @@
 <body>
 <div layout:fragment="content1">
     <div class="p-3">
+        <div class="col-md-6 offset-3">
         <form method="post" th:action="@{saveVehicule}">
             <div class="mb-3 mt-3">
                 <label for="marque" class="form-label">Marque:</label>
-                <input type="text" class="form-control" id="marque" placeholder="Peugeot" name="marque">
+                <input type="text" class="form-control" id="marque" placeholder="Peugeot" name="marque"
+                       th:value="${vehicule.marque}">
                 <span class="text-danger" ></span>
             </div>
             <div class="mb-3">
                 <label for="modele" class="form-label">Modéle:</label>
                 <input type="text" class="form-control" id="modele" placeholder="Partner"
-                       name="modele" >
+                       name="modele"   th:value="${vehicule.modele}">
             </div>
-            <div class="mb-3">
+<!--            <div class="mb-3">
                 <label for="annee" class="form-label">Année:</label>
                 <input type="date" class="form-control" id="annee" placeholder="Année"
-                       name="année" >
+                       name="année"   th:value="${vehicule.annee}">
+            </div>-->
+            <div class="mb-3">
+                <label for="annee" class="form-label">Année:</label>
+                <input type="number" class="form-control" id="annee" placeholder="Année"
+                       name="annee"   th:value="${vehicule.annee}">
             </div>
             <div class="mb-3 mt-3">
-                <label for="carburant" class="form-label">Carburant:</label>
-                <input type="text" class="form-control" id="carburant" placeholder="Diesel"
-                       name="carburant" >
+                <label for="typeCarburant" class="form-label">Carburant:</label>
+                <input type="text" class="form-control" id="typeCarburant" placeholder="Diesel"
+                       name="typeCarburant"  th:value="${vehicule.typeCarburant}" >
                 <span class="text-danger" ></span>
             </div>
             <div class="mb-3 mt-3">
                 <label for="matricule" class="form-label">Matricule:</label>
                 <input type="text" class="form-control" id="matricule" placeholder="15-589745"
-                       name="matricule" >
+                       name="matricule"  th:value="${vehicule.matricule}" >
                 <span class="text-danger" ></span>
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
         </form>
+        </div>
     </div>
 </div>
 </body>

@@ -16,6 +16,7 @@ public interface VehiculeService {
     public List<MissionResponseDto> findHistoriqueMission(VehiculeIdRequestDto vehiculeIdRequestDto);
     public Vehicule findVehiculeById(Long id);
     List<VehiculeResponseDto> findByContainName(String keyWord);
+    public VehiculeResponseDto saveVehicule(Vehicule vehicule);
 
    //Générer des rapports liés aux véhicules
 
