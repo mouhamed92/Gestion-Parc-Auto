@@ -12,5 +12,4 @@ public class EntretientResponseDto {
     LocalDate dateMaintenance;
     double montantMaintenance;
     String detailsMaintenance ;
-
 }

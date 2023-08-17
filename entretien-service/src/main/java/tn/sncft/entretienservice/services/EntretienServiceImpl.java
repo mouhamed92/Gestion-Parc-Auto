@@ -66,7 +66,7 @@ public class EntretienServiceImpl implements EntretienService {
 
         entretien.setIdVehicle(entretienRequestDto.getIdVehicle());
         entretien.setDateMaintenance(entretienRequestDto.getDateMaintenance());
-        entretien.setMontantMaintenance(entretien.getMontantMaintenance());
+        entretien.setMontantMaintenance(entretienRequestDto.getMontantMaintenance());
         entretien.setDetailsMaintenance(entretienRequestDto.getDetailsMaintenance());
 
         entretienRepository.save(entretien);

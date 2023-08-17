@@ -194,4 +194,24 @@ public class VehiculeServiceImpl implements VehiculeService {
         return responseDto ;
     }
 
+    @Override
+    public List<EntretientResponseDto> listeEntretiens(Long id) {
+
+        List<EntretientResponseDto> entretientResponseDto = new ArrayList<>();
+
+        List<EntretientResponseDto> entretiens =  entretientRestClient.findAllEntretien();
+        System.out.println(entretiens);
+
+        if (entretiens.isEmpty()) {
+            System.out.println("pas des entretiens à afficher");
+        } else {
+            entretiens.forEach(entretien -> {
+                if(entretien.getIdVehicle()==id){
+                    entretientResponseDto.add(modelMapper.map(entretien, EntretientResponseDto.class));
+                }
+            });
+        }
+        return entretientResponseDto;
+    }
+
 }

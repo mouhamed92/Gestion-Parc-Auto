@@ -11,6 +11,7 @@
         <module name="discovry" />
         <module name="entretien-service" />
         <module name="gateway" />
+        <module name="mission-service" />
       </profile>
     </annotationProcessing>
   </component>
@@ -19,6 +20,7 @@
       <module name="discovry" options="-parameters" />
       <module name="entretien-service" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="mission-service" options="-parameters" />
       <module name="vehicule-service" options="-parameters" />
     </option>
   </component>

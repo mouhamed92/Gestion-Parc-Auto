@@ -17,6 +17,7 @@ public interface VehiculeService {
     public Vehicule findVehiculeById(Long id);
     List<VehiculeResponseDto> findByContainName(String keyWord);
     public VehiculeResponseDto saveVehicule(Vehicule vehicule);
+    public List<EntretientResponseDto> listeEntretiens(Long id);
 
    //Générer des rapports liés aux véhicules
 
