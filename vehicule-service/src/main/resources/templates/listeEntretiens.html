@@ -17,7 +17,7 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>ID</th><th>ID Véhicule</th><th>Date</th><th>Montant</th><th>Détails</th>
+                        <th>ID</th><th>ID Véhicule</th><th>Date</th><th>Montant</th><th>Détails</th><th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -27,6 +27,11 @@
                         <td th:text=${e.dateMaintenance}></td>
                         <td th:text=${e.montantMaintenance}></td>
                         <td th:text=${e.detailsMaintenance}></td>
+                        <td>
+                            <a  class="btn btn-secondary mr-1" >
+                                Facture
+                            </a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tn.sncft.missionservice.dtos.MissionIdRequestDto;
 import tn.sncft.missionservice.dtos.MissionRequestDto;
 import tn.sncft.missionservice.dtos.MissionResponseDto;
 import tn.sncft.missionservice.dtos.VehiculeResponseDto;
@@ -11,7 +12,6 @@ import tn.sncft.missionservice.entities.Mission;
 import tn.sncft.missionservice.repositories.MissionRepository;
 import tn.sncft.missionservice.restClients.ChauffeurRestClient;
 import tn.sncft.missionservice.restClients.VehiculeRestClient;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,8 +51,19 @@ public class MissionServiceImpl implements MissionService {
     }
 
     @Override
-    public MissionResponseDto findMission(MissionRequestDto missionRequestDto) {
-        return null;
+    public MissionResponseDto findMission(MissionIdRequestDto idRequestDto) {
+        Mission mission ;
+        MissionResponseDto missionResponseDto ;
+
+        mission = missionRepository.findById(idRequestDto.getId()).get();
+
+        if (mission==null){
+            System.out.println("mission introuvable..!");
+        }
+
+        missionResponseDto = modelMapper.map(mission,MissionResponseDto.class);
+
+        return missionResponseDto ;
     }
 
     @Override
@@ -75,15 +86,37 @@ public class MissionServiceImpl implements MissionService {
 
     @Override
     public MissionResponseDto updateMission(MissionRequestDto missionRequestDto) throws Exception {
-        return null;
+        Mission mission ;
+        MissionResponseDto missionResponseDto ;
+
+        mission = missionRepository.findById(missionRequestDto.getId()).get();
+
+        if(mission.equals(null)) throw new Exception("mission introuvable !");
+
+        mission.setIdVehicule(missionRequestDto.getIdVehicule());
+        mission.setIdChauffeur(missionRequestDto.getIdChauffeur());
+        mission.setDateMission(missionRequestDto.getDateMission());
+        mission.setDestination(missionRequestDto.getDestination());
+
+        missionRepository.save(mission);
+
+        missionResponseDto = modelMapper.map(mission,MissionResponseDto.class);
+
+        return missionResponseDto ;
     }
 
     @Override
-    public void deleteMission(MissionRequestDto missionRequestDto) {
+    public void deleteMission(MissionIdRequestDto missionIdRequestDto) {
+
+        Mission mission ;
+        mission = missionRepository.findById(missionIdRequestDto.getId()).get();
+        try {
+            missionRepository.delete(mission);
+            System.out.println("Supression éffectuer avec succé...");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
-
-
-
 
 }

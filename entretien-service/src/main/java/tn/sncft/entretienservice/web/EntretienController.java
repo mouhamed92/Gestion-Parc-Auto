@@ -34,4 +34,9 @@ public class EntretienController {
     public List<EntretienResponseDto> findAllEntretien(){
         return entretienService.findAllEntretien();
     }
+
+    @DeleteMapping(path = "/deleteEntretien")
+    public void deleteEntretien(@RequestBody EntretienIdRequestDto entretienIdRequestDto){
+        entretienService.deleteEntretien(entretienIdRequestDto);
+    }
 }

@@ -17,7 +17,7 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>ID</th><th>ID Véhicule</th><th>ID Chauffeur</th><th>Date</th><th>Détails</th>
+                        <th>ID</th><th>ID Véhicule</th><th>ID Chauffeur</th><th>Date</th><th>Déstination</th><th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -27,6 +27,11 @@
                         <td th:text=${m.idChauffeur}></td>
                         <td th:text=${m.dateMission}></td>
                         <td th:text=${m.destination}></td>
+                        <td>
+                            <a  class="btn btn-secondary mr-1" >
+                                Détails
+                            </a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
