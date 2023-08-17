@@ -19,7 +19,9 @@ public interface VehiculeService {
     public VehiculeResponseDto saveVehicule(Vehicule vehicule);
     public List<EntretientResponseDto> listeEntretiens(Long id);
 
-   //Générer des rapports liés aux véhicules
+   public List<MissionResponseDto> listeMissions(Long id);
+
+    //Générer des rapports liés aux véhicules
 
    //Vérifier la disponibilité d'un véhicule
 }

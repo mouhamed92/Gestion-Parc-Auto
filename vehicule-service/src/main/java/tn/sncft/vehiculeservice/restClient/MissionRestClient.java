@@ -2,6 +2,7 @@ package tn.sncft.vehiculeservice.restClient;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import tn.sncft.vehiculeservice.dtos.MissionResponseDto;
 import tn.sncft.vehiculeservice.model.Mission;
 import java.util.List;
 
@@ -9,6 +10,6 @@ import java.util.List;
 public interface MissionRestClient {
 
 
-    @GetMapping("/mission")
-    List<Mission> findAllMission();
+    @GetMapping(path = "/listMissions")
+    List<MissionResponseDto> findAllMission();
 }

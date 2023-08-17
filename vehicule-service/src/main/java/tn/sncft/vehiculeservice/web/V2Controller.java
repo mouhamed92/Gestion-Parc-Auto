@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import tn.sncft.vehiculeservice.dtos.EntretientResponseDto;
+import tn.sncft.vehiculeservice.dtos.MissionResponseDto;
 import tn.sncft.vehiculeservice.dtos.VehiculeResponseDto;
 import tn.sncft.vehiculeservice.entities.Vehicule;
 import tn.sncft.vehiculeservice.services.VehiculeService;
@@ -61,6 +62,13 @@ public class V2Controller {
         model.addAttribute("sum", sum);
 
         return "listeEntretiens";
+    }
+
+    @GetMapping(path = "/displayMissions")
+    public String displayMissions(Model model , Long id){
+        List<MissionResponseDto> responseDtos = vehiculeService.listeMissions(id);
+        model.addAttribute("missions",responseDtos);
+        return "listeMissions";
     }
 
 }

@@ -148,24 +148,21 @@ public class VehiculeServiceImpl implements VehiculeService {
 
     @Override
     public List<MissionResponseDto> findHistoriqueMission(VehiculeIdRequestDto vehiculeIdRequestDto) {
-        List<Mission> missions= new ArrayList<>();
+        List<MissionResponseDto> missionResponseDto = new ArrayList<>();
 
-        missionRestClient.findAllMission().forEach(mission -> {
-            if (mission.getIdVehicle() == vehiculeIdRequestDto.getId()){
-                missions.add(mission) ;
-            }
-        });
+        List<MissionResponseDto> missions =  missionRestClient.findAllMission();
+        System.out.println(missions);
 
-        if(missions.equals(null)) {
+        if (missions.isEmpty()) {
             System.out.println("pas des missions à afficher");
-            return null ;
-        }else {
-            List<MissionResponseDto> missionResponseDto = new ArrayList<>() ;
+        } else {
             missions.forEach(mission -> {
-                missionResponseDto.add(modelMapper.map(mission,MissionResponseDto.class));
+                if(mission.getIdVehicule()==vehiculeIdRequestDto.getId()){
+                    missionResponseDto.add(modelMapper.map(mission, MissionResponseDto.class));
+                }
             });
-            return missionResponseDto ;
         }
+        return missionResponseDto;
     }
 
 
@@ -212,6 +209,25 @@ public class VehiculeServiceImpl implements VehiculeService {
             });
         }
         return entretientResponseDto;
+    }
+
+    @Override
+    public List<MissionResponseDto> listeMissions(Long id) {
+        List<MissionResponseDto> missionResponseDtos = new ArrayList<>();
+
+        List<MissionResponseDto> missions =  missionRestClient.findAllMission();
+        System.out.println(missions);
+
+        if (missions.isEmpty()) {
+            System.out.println("pas des entretiens à afficher");
+        } else {
+            missions.forEach(mission -> {
+                if(mission.getIdVehicule()==id){
+                    missionResponseDtos.add(modelMapper.map(mission, MissionResponseDto.class));
+                }
+            });
+        }
+        return missionResponseDtos;
     }
 
 }

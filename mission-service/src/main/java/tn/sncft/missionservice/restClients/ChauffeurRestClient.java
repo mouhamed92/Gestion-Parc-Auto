@@ -1,4 +1,7 @@
 package tn.sncft.missionservice.restClients;
 
-public class ChauffeurRestClient {
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient(name = "CHAUFFEUR-SERVICE")
+public interface ChauffeurRestClient {
 }
