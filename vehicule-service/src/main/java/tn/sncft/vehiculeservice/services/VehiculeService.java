@@ -2,7 +2,6 @@ package tn.sncft.vehiculeservice.services;
 
 import tn.sncft.vehiculeservice.dtos.*;
 import tn.sncft.vehiculeservice.entities.Vehicule;
-
 import java.util.List;
 
 public interface VehiculeService {

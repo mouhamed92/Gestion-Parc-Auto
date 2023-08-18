@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="menu">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter Mission</title>
+</head>
+<body>
+<div layout:fragment="content1">
+    <div class="p-3">
+        <div class="col-md-6 offset-3">
+        <form method="post" th:action="@{saveMission}">
+            <div class="mb-3 mt-3">
+                <label for="idVehicule" class="form-label">ID Vehicule:</label>
+                <input type="text" class="form-control" id="idVehicule" placeholder="15-245-DI" name="idVehicule"
+                            th:value="${mission.idVehicule}">
+                <span class="text-danger"  ></span>
+            </div>
+            <div class="mb-3">
+                <label for="idChauffeur" class="form-label">ID Chauffeur</label>
+                <input type="text" class="form-control" id="idChauffeur" placeholder="49423L"
+                       name="idChauffeur"  th:value="${mission.idChauffeur}" >
+                <span class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label for="dateMission" class="form-label">Date:</label>
+                <input type="date" class="form-control" id="dateMission" placeholder="date"
+                       name="dateMission" th:value="${mission.dateMission}">
+            </div>
+            <div class="mb-3 mt-3">
+                <label for="destination" class="form-label">Destination:</label>
+                <input type="text" class="form-control" id="destination" placeholder="GDFH"
+                       name="destination"  th:value="${mission.destination}">
+                <span class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

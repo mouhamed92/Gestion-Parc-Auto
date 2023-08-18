@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +19,7 @@ public class Mission {
     private Long id ;
     private Long idVehicule;
     private Long idChauffeur;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateMission;
     private String destination ;
 }

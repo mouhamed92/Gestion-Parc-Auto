@@ -71,4 +71,15 @@ public class V2Controller {
         return "listeMissions";
     }
 
+    /**
+     * redirection vers le service mission
+     * @return
+     */
+
+    @GetMapping("/addMission")
+    public String redirectToMS() {
+        return "redirect:http://localhost:8083/addMission";
+    }
+
+
 }

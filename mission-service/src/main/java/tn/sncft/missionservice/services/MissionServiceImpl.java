@@ -119,4 +119,11 @@ public class MissionServiceImpl implements MissionService {
 
     }
 
+    @Override
+    public MissionResponseDto saveMisssion(Mission mission){
+        missionRepository.save(mission);
+        MissionResponseDto responseDto = modelMapper.map(mission,MissionResponseDto.class);
+        return responseDto ;
+    }
+
 }

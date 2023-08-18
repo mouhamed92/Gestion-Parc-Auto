@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="menu">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.1/css/bootstrap.min.css">
+
+</head>
+<body>
+<div layout:fragment="content1">
+<div class="container mt-2">
+    <div class="card">
+        <div class="card-header">Liste des missions</div>
+        <div class="card-body">
+            <form method="get">
+                <label> </label>
+                <input type="text" th:name="keyWord">
+                <button type="submit" class="btn btn-primary">Chercher</button>
+            </form>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th><th>ID Vehicule</th><th>ID Chauffeur</th><th>Date</th><th>Destination</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td ></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>
+</body>
+</html>
