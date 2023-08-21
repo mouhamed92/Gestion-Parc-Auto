@@ -8,15 +8,19 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="vehicule-service" />
+        <module name="carburant-service" />
+        <module name="mission-service" />
         <module name="discovry" />
         <module name="entretien-service" />
         <module name="gateway" />
-        <module name="mission-service" />
+        <module name="Agent-service" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Agent-service" options="-parameters" />
+      <module name="carburant-service" options="-parameters" />
       <module name="discovry" options="-parameters" />
       <module name="entretien-service" options="-parameters" />
       <module name="gateway" options="-parameters" />
